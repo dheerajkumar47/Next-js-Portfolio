@@ -69,6 +69,38 @@ const projects = [
     mediaUrl: "https://images.pexels.com/photos/4145356/pexels-photo-4145356.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     demoUrl: "https://images.pexels.com/photos/4145356/pexels-photo-4145356.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
+  {
+    id: "3d-work",
+    title: "3D Work & Designs",
+    category: "3D / Blender",
+    description: "Collection of 3D models, environments & designs published on Sketchfab.",
+    longDescription: "A curated portfolio of 3D models and digital environments crafted in Blender and published on Sketchfab under the alias D3D_Engineer. Includes architectural renders, character designs, and interactive 3D scenes — showcasing skills in modeling, texturing, lighting, and 3D storytelling.",
+    techStack: ["Blender", "Sketchfab", "3D Modeling", "Texturing"],
+    repo: "https://sketchfab.com/D3D_Engineer",
+    demo: "https://sketchfab.com/D3D_Engineer",
+    color: "from-amber-500/20 to-orange-500/20",
+    hoverColor: "group-hover:from-amber-500/40 group-hover:to-orange-500/40",
+    span: "md:col-span-1 md:row-span-1",
+    mediaType: "image",
+    mediaUrl: "https://images.pexels.com/photos/1029604/pexels-photo-1029604.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    demoUrl: "https://images.pexels.com/photos/1029604/pexels-photo-1029604.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  },
+  {
+    id: "cpu-scheduling",
+    title: "CPU Scheduling Simulator",
+    category: "Java / JavaFX",
+    description: "Visual JavaFX simulator for SJF, FCFS, Round Robin & Priority scheduling with Gantt charts.",
+    longDescription: "A CPU scheduling simulator built with JavaFX that visually demonstrates four major algorithms: Shortest Job First (SJF), First-Come-First-Served (FCFS), Round Robin, and Priority-based scheduling. Users can input custom data or use dummy datasets, then view auto-generated Gantt charts along with average turnaround and waiting times.",
+    techStack: ["Java", "JavaFX", "CSS", "Gantt Chart"],
+    repo: "https://github.com/dheerajkumar47/Cpu-Scheduling-Algorithms",
+    demo: "https://github.com/dheerajkumar47/Cpu-Scheduling-Algorithms",
+    color: "from-cyan-600/20 to-teal-500/20",
+    hoverColor: "group-hover:from-cyan-600/40 group-hover:to-teal-500/40",
+    span: "md:col-span-1 md:row-span-1",
+    mediaType: "image",
+    mediaUrl: "https://raw.githubusercontent.com/dheerajkumar47/Cpu-Scheduling-Algorithms/main/welcome.jpg",
+    demoUrl: "https://raw.githubusercontent.com/dheerajkumar47/Cpu-Scheduling-Algorithms/main/hi.jpg"
+  },
 ];
 
 const INITIAL_VISIBLE_COUNT = 5;
