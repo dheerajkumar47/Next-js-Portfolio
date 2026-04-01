@@ -1,0 +1,894 @@
+{
+  "name": "NeurochainAI Basic API Integration",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "*"
+        ],
+        "additionalFields": {}
+      },
+      "id": "10480893-6803-444d-80b6-b52cca1ec2ee",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "position": [
+        -1584,
+        544
+      ],
+      "webhookId": "05885608-5344-4dcf-81ad-4550b9a01241",
+      "typeVersion": 1.1,
+      "credentials": {
+        "telegramApi": {
+          "id": "XlAHfkvKKr3lPMTA",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const rawUrl = $json.choices[0].text;\nconst imageUrl = JSON.parse(rawUrl)[0];\nreturn { json: { imageUrl: imageUrl } };"
+      },
+      "id": "bd34a8eb-ea66-4640-85e4-2f7ab89d5f2c",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        240,
+        -80
+      ],
+      "notesInFlow": true,
+      "typeVersion": 2,
+      "notes": "Extract the URL from the previous node"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.imageUrl }}",
+        "options": {}
+      },
+      "id": "e382abf0-3579-4f17-8f18-021fbf961075",
+      "name": "HTTP Request3",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        400,
+        -80
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "⌛",
+        "replyMarkup": "inlineKeyboard",
+        "additionalFields": {
+          "appendAttribution": false,
+          "reply_to_message_id": "={{ $('Telegram Trigger').item.json.message.message_id }}"
+        }
+      },
+      "id": "8dbc2694-fb8a-4973-b330-18a73e61c97b",
+      "name": "Telegram2",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        -368,
+        160
+      ],
+      "typeVersion": 1.2,
+      "webhookId": "9133785a-1a48-41fe-bedd-f931fa01f3ea",
+      "credentials": {
+        "telegramApi": {
+          "id": "XlAHfkvKKr3lPMTA",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendPhoto",
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "binaryData": true,
+        "additionalFields": {
+          "caption": "=*Prompt:* `{{ $('Code1').item.json.cleanMessage }}`",
+          "parse_mode": "Markdown",
+          "reply_to_message_id": "={{ $('Telegram Trigger').item.json.message.message_id }}"
+        }
+      },
+      "id": "cd22794b-f0b6-4e4f-8560-768f15454c40",
+      "name": "Telegram1",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        608,
+        -80
+      ],
+      "typeVersion": 1.2,
+      "webhookId": "5204a722-d709-4e1a-b834-7720dbc4109b",
+      "credentials": {
+        "telegramApi": {
+          "id": "XlAHfkvKKr3lPMTA",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteMessage",
+        "chatId": "={{ $('Telegram2').item.json.result.chat.id }}",
+        "messageId": "={{ $('Telegram2').item.json.result.message_id }}"
+      },
+      "id": "fefbc639-c955-4365-8980-da6f5219a733",
+      "name": "Telegram4",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        784,
+        -80
+      ],
+      "typeVersion": 1.2,
+      "webhookId": "1a33b093-12ee-472b-b4c9-4db533dab3dd",
+      "credentials": {
+        "telegramApi": {
+          "id": "XlAHfkvKKr3lPMTA",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.error.message }}",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "🔄 Retry",
+                    "additionalFields": {
+                      "callback_data": "=response= Fluxretry: {{ $('Code1').item.json.cleanMessage }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "reply_to_message_id": "={{ $('Telegram Trigger').item.json.message.message_id }}"
+        }
+      },
+      "id": "16b9c167-f28d-4e12-8b6e-a26c8e9d41d6",
+      "name": "Telegram3",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        432,
+        368
+      ],
+      "typeVersion": 1.2,
+      "webhookId": "ccc0a5fd-f575-4c87-b518-0e4ced8e4cef",
+      "credentials": {
+        "telegramApi": {
+          "id": "XlAHfkvKKr3lPMTA",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteMessage",
+        "chatId": "={{ $('Telegram2').item.json.result.chat.id }}",
+        "messageId": "={{ $('Telegram2').item.json.result.message_id }}"
+      },
+      "id": "54c01809-e7b6-4c27-8514-f646bfeeace9",
+      "name": "Telegram5",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        640,
+        368
+      ],
+      "typeVersion": 1.2,
+      "webhookId": "5b22349c-90ea-45b6-a016-5b955c492d6f",
+      "credentials": {
+        "telegramApi": {
+          "id": "XlAHfkvKKr3lPMTA",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "=*Prompt too short*",
+        "replyMarkup": "inlineKeyboard",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown",
+          "reply_to_message_id": "={{ $('Telegram Trigger').item.json.message.message_id }}"
+        }
+      },
+      "id": "7d97fb27-42e7-4c3e-8a3d-531b805b7a47",
+      "name": "Telegram6",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        432,
+        192
+      ],
+      "typeVersion": 1.2,
+      "webhookId": "82b4e710-238e-4675-9117-a63237a8b8e0",
+      "credentials": {
+        "telegramApi": {
+          "id": "XlAHfkvKKr3lPMTA",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteMessage",
+        "chatId": "={{ $('Telegram2').item.json.result.chat.id }}",
+        "messageId": "={{ $('Telegram2').item.json.result.message_id }}"
+      },
+      "id": "f4304daf-b867-407d-801d-a126987f4579",
+      "name": "Telegram7",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        640,
+        192
+      ],
+      "typeVersion": 1.2,
+      "webhookId": "66bd3a36-459b-4aef-8ecb-41bdad111b59",
+      "credentials": {
+        "telegramApi": {
+          "id": "XlAHfkvKKr3lPMTA",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyBbbsZJZ2n7e_Ppfm5jt4zPLtW0iWGou3g",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"contents\": [\n    {\n      \"parts\": [\n        {\n          \"text\": \"={{ $(\\\"Telegram Trigger\\\").item.json.message.text }}\"\n        }\n      ]\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "300f7951-517a-44f5-a6db-9297286ca506",
+      "name": "NeurochainAI - REST API",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -2640,
+        -144
+      ],
+      "typeVersion": 4.2,
+      "alwaysOutputData": false,
+      "disabled": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "sendChatAction",
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}"
+      },
+      "id": "a4869b99-c04a-4293-a5bc-7a32a817bfd4",
+      "name": "TYPING - ACTION",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        -944,
+        944
+      ],
+      "typeVersion": 1.2,
+      "webhookId": "6bfd16a9-6058-426b-8427-2a7246a9c27d",
+      "credentials": {
+        "telegramApi": {
+          "id": "XlAHfkvKKr3lPMTA",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.candidates[0].content.parts[0].text.substring(0, 4000) }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "reply_to_message_id": "={{ $('Telegram Trigger').item.json.message.message_id }}"
+        }
+      },
+      "id": "fe60d071-7838-4bd5-8cdb-1e91d2f59f59",
+      "name": "AI Response",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        -208,
+        672
+      ],
+      "typeVersion": 1.2,
+      "webhookId": "f706ca6d-2c16-4cd8-8c42-603ee4555f50",
+      "credentials": {
+        "telegramApi": {
+          "id": "XlAHfkvKKr3lPMTA",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "=*No response from worker*",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown",
+          "reply_to_message_id": "={{ $('Telegram Trigger').item.json.message.message_id }}"
+        }
+      },
+      "id": "40af3439-e248-48ed-b3b8-e2ac0c1e3888",
+      "name": "No response",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        32,
+        912
+      ],
+      "typeVersion": 1.2,
+      "webhookId": "db8c6d04-53e4-405a-985e-7b2bd4e76d47",
+      "credentials": {
+        "telegramApi": {
+          "id": "XlAHfkvKKr3lPMTA",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "=*Prompt too short*",
+        "replyMarkup": "inlineKeyboard",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown",
+          "reply_to_message_id": "={{ $('Telegram Trigger').item.json.message.message_id }}"
+        }
+      },
+      "id": "7310db04-121f-46b0-93cf-667c4f09b346",
+      "name": "Prompt too short",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        32,
+        1072
+      ],
+      "typeVersion": 1.2,
+      "webhookId": "e40324c1-dc95-484d-8557-90b04a0a913c",
+      "credentials": {
+        "telegramApi": {
+          "id": "XlAHfkvKKr3lPMTA",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.error.message }}",
+                    "rightValue": "=500 - \"{\\\"error\\\":true,\\\"msg\\\":\\\"No response from worker\\\"}\""
+                  }
+                ]
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "ef851d57-0618-4fe7-8469-a30971a05ee5",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEquals"
+                    },
+                    "leftValue": "{{ $json.error.message }}",
+                    "rightValue": "400 - \"{\\\"error\\\":true,\\\"msg\\\":\\\"Prompt string is invalid\\\"}\""
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5bd321bc-c1dc-4cf0-911c-81b0918c3d2a",
+      "name": "Switch2",
+      "type": "n8n-nodes-base.switch",
+      "position": [
+        -224,
+        1040
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": false,
+                  "typeValidation": "loose"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "f5df9de6-0650-42e4-9a6e-8d1becf16c51",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    },
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/flux"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Flux"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": false,
+                  "typeValidation": "loose"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "a49ecf63-3f68-4e21-a015-d0cbc227c230",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "@NCNAI_BOT"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "text"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": false,
+                  "typeValidation": "loose"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "d5ac0c9f-858a-4040-b72e-ae7b522ff60e",
+                    "operator": {
+                      "name": "filter.operator.equals",
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.message.chat.type }}",
+                    "rightValue": "private"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "DM Text"
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "af1e74b5-89ca-4fba-a3c5-27ac498564cb",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "position": [
+        -1264,
+        544
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "jsCode": "const userMessage = $json.message.text;\nconst cleanMessage = userMessage.replace(/^\\/flux\\s*/, '');\nreturn { json: { cleanMessage: cleanMessage } };"
+      },
+      "id": "157a8574-56b0-45de-93f5-e72a04d5ca0a",
+      "name": "Code1",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        -624,
+        144
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "url": "=https://image.pollinations.ai/prompt/a%20beautiful%20sunset",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "width",
+              "value": "1024"
+            },
+            {
+              "name": "height",
+              "value": "1024"
+            },
+            {
+              "name": "nologo",
+              "value": "true"
+            },
+            {
+              "name": "model",
+              "value": "flux"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          },
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "b4c4eeb2-e19f-4c5e-baf6-8aa02503ce07",
+      "name": "NeurochainAI - Flux",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -2624,
+        96
+      ],
+      "typeVersion": 4.2,
+      "alwaysOutputData": false,
+      "disabled": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.error.message }}",
+                    "rightValue": "400 - \"{\\\"error\\\":true,\\\"msg\\\":\\\"Prompt string is invalid\\\"}\""
+                  }
+                ]
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "ef851d57-0618-4fe7-8469-a30971a05ee5",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEquals"
+                    },
+                    "leftValue": "{{ $json.error.message }}",
+                    "rightValue": "400 - \"{\\\"error\\\":true,\\\"msg\\\":\\\"Prompt string is invalid\\\"}\""
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "922ab77b-f33c-4505-8dc8-17ccc1e46626",
+      "name": "Switch1",
+      "type": "n8n-nodes-base.switch",
+      "position": [
+        272,
+        272
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyAcNhdxzeGILXZAGnKUHIwNPvQ5jrK679E",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"contents\": [\n    {\n      \"parts\": [\n        {\n          \"text\": \"{{ $('Telegram Trigger').item.json.message.text }}\"\n        }\n      ]\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "36cb4e89-de3b-41e9-8b78-716ae1849508",
+      "name": "Gemini AI - PERFECT",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -480,
+        944
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "url": "=https://image.pollinations.ai/prompt/{{ encodeURIComponent($('Code1').item.json.cleanMessage) }}?width=1024&height=1024&nologo=true",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "4e274995-95cc-4e3a-9311-3736407a5dbc",
+      "name": "Pollinations Image - PERFECT",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        0,
+        144
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Code": {
+      "main": [
+        []
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Telegram2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "TYPING - ACTION",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "TYPING - ACTION",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Telegram6",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch2": {
+      "main": [
+        [
+          {
+            "node": "No response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Prompt too short",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram1": {
+      "main": [
+        [
+          {
+            "node": "Telegram4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram2": {
+      "main": [
+        [
+          {
+            "node": "Pollinations Image - PERFECT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram3": {
+      "main": [
+        [
+          {
+            "node": "Telegram5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram6": {
+      "main": [
+        [
+          {
+            "node": "Telegram7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request3": {
+      "main": [
+        []
+      ]
+    },
+    "TYPING - ACTION": {
+      "main": [
+        [
+          {
+            "node": "Gemini AI - PERFECT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NeurochainAI - Flux": {
+      "main": [
+        [],
+        []
+      ]
+    },
+    "NeurochainAI - REST API": {
+      "main": [
+        [],
+        []
+      ]
+    },
+    "Gemini AI - PERFECT": {
+      "main": [
+        [
+          {
+            "node": "AI Response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pollinations Image - PERFECT": {
+      "main": [
+        [
+          {
+            "node": "Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionTimeout": -1,
+    "availableInMCP": false
+  },
+  "versionId": "2d4a5130-007f-42ae-ab34-aad432a0f6bb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "39e6b4d943733c91efbc7728c7b3f49a29e6f9fa0a4b8d87793d60aa662a7e61"
+  },
+  "id": "yBJDvrymTazBvwLk",
+  "tags": []
+}
