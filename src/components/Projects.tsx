@@ -22,20 +22,20 @@ const projects = [
     demoUrl: "https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
   {
-    id: "neurosync-ai",
-    title: "NeuroSync AI PC",
-    category: "AI System",
-    description: "AI-powered PC environment management and sync.",
-    longDescription: "An intelligent system for synchronizing and managing PC environments using AI. Leverages Supabase for backend computations and modern React frontend for controls.",
-    techStack: ["React", "Supabase", "TypeScript", "AI"],
-    repo: "https://github.com/dheerajkumar47/NeuroSync-AI-PC",
-    demo: "https://neuro-sync-ai-pc.vercel.app/",
-    color: "from-blue-600/20 to-purple-500/20",
-    hoverColor: "group-hover:from-blue-600/40 group-hover:to-purple-500/40",
+    id: "face-emotion-detection",
+    title: "Face Emotion Detection",
+    category: "Deep Learning",
+    description: "Real-time facial emotion recognition using CNN with a live Streamlit web app.",
+    longDescription: "A deep learning project that detects human emotions in real time from facial expressions. Trained a CNN model (emotion_model.h5) on the FER dataset to classify 7 emotions: Happy, Sad, Angry, Surprise, Fear, Disgust, and Neutral. Built with OpenCV for face detection and Streamlit for a live interactive demo.",
+    techStack: ["Python", "TensorFlow", "Keras", "OpenCV", "Streamlit"],
+    repo: "https://github.com/dheerajkumar47/Face_Emtion_Detection",
+    demo: "https://faceemtiondetection-2zspy3bypfz99z6vt8waca.streamlit.app/",
+    color: "from-pink-600/20 to-rose-500/20",
+    hoverColor: "group-hover:from-pink-600/40 group-hover:to-rose-500/40",
     span: "md:col-span-1 md:row-span-2",
     mediaType: "image",
-    mediaUrl: "https://images.pexels.com/photos/17483874/pexels-photo-17483874/free-photo-of-digital-art.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    demoUrl: "https://images.pexels.com/photos/17483874/pexels-photo-17483874/free-photo-of-digital-art.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    mediaUrl: "https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    demoUrl: "https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
   {
     id: "anomaly-detection",
