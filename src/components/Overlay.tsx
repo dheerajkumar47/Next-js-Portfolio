@@ -1,6 +1,6 @@
 "use client";
 
-import { useScroll, useTransform, motion } from "framer-motion";
+import { useTransform, motion } from "framer-motion";
 
 export default function Overlay({ scrollYProgress }: { scrollYProgress: any }) {
   // Opacity transforms
