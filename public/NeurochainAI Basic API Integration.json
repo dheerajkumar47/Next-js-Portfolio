@@ -244,7 +244,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyBbbsZJZ2n7e_Ppfm5jt4zPLtW0iWGou3g",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=YOUR_GEMINI_API_KEY",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "{\n  \"contents\": [\n    {\n      \"parts\": [\n        {\n          \"text\": \"={{ $(\\\"Telegram Trigger\\\").item.json.message.text }}\"\n        }\n      ]\n    }\n  ]\n}",
@@ -637,7 +637,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyAcNhdxzeGILXZAGnKUHIwNPvQ5jrK679E",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=YOUR_GEMINI_API_KEY_HERE",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
