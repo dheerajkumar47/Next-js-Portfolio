@@ -102,6 +102,22 @@ const projects = [
     demoUrl: "https://raw.githubusercontent.com/dheerajkumar47/Cpu-Scheduling-Algorithms/main/hi.jpg"
   },
   {
+    id: "ai-tutor",
+    title: "AI Tutor",
+    category: "AI / Full Stack",
+    description: "Personal AI tutor with quizzes, summaries & per-user memory — powered by GPT-4o-mini.",
+    longDescription: "A full-stack AI tutoring platform built with FastAPI and LangChain. Features JWT authentication, per-user FAISS vector memory for long-term context, multimodal input (text, voice, images, documents), real-time SSE streaming, and LangChain agent tools for quizzes, summaries, and diagram generation. Deployed on Render with Docker.",
+    techStack: ["FastAPI", "LangChain", "OpenAI", "FAISS", "Python", "Docker"],
+    repo: "https://github.com/dheerajkumar47/AI-Tutor",
+    demo: "https://ai-tutor-ndzy.onrender.com",
+    color: "from-violet-600/20 to-indigo-500/20",
+    hoverColor: "group-hover:from-violet-600/40 group-hover:to-indigo-500/40",
+    span: "md:col-span-1 md:row-span-1",
+    mediaType: "image",
+    mediaUrl: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    demoUrl: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  },
+  {
     id: "neurochain-ai-bot",
     title: "AI Telegram Bot (Gemini 2.5)",
     category: "AI Automation / n8n",
