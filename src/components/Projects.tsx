@@ -6,6 +6,22 @@ import { useState, useEffect } from "react";
 // Project Data with Media & Layout Configuration
 const projects = [
   {
+    id: "interview-pilot",
+    title: "Interview Pilot",
+    category: "AI Mock Interview",
+    description: "AI-powered mock interview platform with specialized agents for career success.",
+    longDescription: "Interview Pilot is a comprehensive AI-driven platform designed to simulate real-world hiring processes. Users can upload resumes for ATS scoring and participate in realistic interview rounds (Technical, HR, Knowledge) conducted by four specialized AI agents. Provides detailed feedback, strengths/weaknesses analysis, and a readiness report.",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "AI Agents", "Clerk"],
+    repo: "https://github.com/dheerajkumar47/Interview-Pilot",
+    demo: "https://interview-pilot-phi.vercel.app/",
+    color: "from-indigo-600/20 to-violet-500/20",
+    hoverColor: "group-hover:from-indigo-600/40 group-hover:to-violet-500/40",
+    span: "md:col-span-2 md:row-span-2",
+    mediaType: "image",
+    mediaUrl: "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    demoUrl: "https://images.pexels.com/photos/3183153/pexels-photo-3183153.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  },
+  {
     id: "pak-industry-insight",
     title: "PAK Industry Insight",
     category: "Data Analysis",
@@ -16,7 +32,7 @@ const projects = [
     demo: "https://pak-industry-insight.vercel.app/",
     color: "from-green-600/20 to-emerald-500/20",
     hoverColor: "group-hover:from-green-600/40 group-hover:to-emerald-500/40",
-    span: "md:col-span-2 md:row-span-2",
+    span: "md:col-span-2 md:row-span-1",
     mediaType: "image",
     mediaUrl: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     demoUrl: "https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
