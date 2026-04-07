@@ -12,6 +12,13 @@ const TIMELINE_DATA = [
     type: "work",
   },
   {
+    year: "Aug 2025 - Oct 2025",
+    title: "AI Intern",
+    org: "Bits Collision",
+    description: "Developed and implemented artificial intelligence models and algorithms. Focused on enhancing platform intelligence through machine learning and natural language processing.",
+    type: "work",
+  },
+  {
     year: "Jan 2024 - Jan 2025",
     title: "UI/UX Designer",
     org: "NASS Enterprises",
