@@ -1,62 +1,54 @@
-# 🚀 Dheeraj Kumar — Portfolio v2
+# Dheeraj Kumar — Portfolio v3
 
-> Personal portfolio of **Dheeraj Kumar**, Software Engineer & AI Researcher.  
-> Built with **Next.js 16**, **Three.js**, and **Framer Motion**.
+> Personal portfolio of **Dheeraj Kumar**, AI Engineer — RAG, AI agents, voice AI and computer vision.
+> Built with **Next.js 16**, **Tailwind CSS v4** and **Framer Motion**.
 
-🌐 **Live:** [dheerajkumar.vercel.app](https://dheerajkumar.vercel.app) *(replace with your actual URL)*
+🌐 **Live:** [next-js-portfolio-green.vercel.app](https://next-js-portfolio-green.vercel.app)
 
 ---
 
 ## ✨ Features
 
-| Feature | Description |
+| Section | What it shows |
 |---|---|
-| 🖥️ **Terminal Boot Screen** | Hacker-style intro with animated `npm run start` output. Press `Enter` (desktop) or tap `▶` (mobile) to launch. |
-| 🏹 **3D Arrow Field Hero** | 300 glowing 3D arrows powered by Three.js. React to mouse movement in real-time and scroll. |
-| 🖱️ **Mouse Tracking** | Arrows point toward your cursor with smooth lerp interpolation. Camera tilts to follow. |
-| 📜 **Scroll Animation** | Hero text fades in/out in 3 stages as you scroll. Camera pulls forward with scroll. |
-| 🧭 **macOS-style Dock** | Animated floating dock with magnification effect for navigation. |
-| 💼 **Projects Section** | Showcases GitHub projects with live links. |
-| 📄 **Research / Insights** | Published AI research papers section. |
-| 🧠 **Skills Section** | Categorized technical skills from resume. |
-| 🗓️ **Timeline** | Work & education history. |
-| 📬 **Contact Form** | Email form via Nodemailer API route. |
-| 📥 **Download Resume** | Direct PDF download from `/public/resume.pdf`. |
+| **Cinematic hero** | Fullscreen looping video, liquid-glass navigation and CTAs, Instrument Serif headline with staggered fade-rise animation, proof strip. |
+| **Case studies** | Six featured systems (AI Receptionist, BidSmith, Factory CCTV Tracking, PSX Market Intelligence, Interview Pilot, AI Tutor) — problem, outcome, how-it-works flow, stack, links. |
+| **More work** | Compact grid of experiments, tools and client builds. |
+| **Capabilities** | Four service pillars, each tied to shipped proof. |
+| **Research** | Two published AI papers with plain-language takeaways. |
+| **Experience** | Roles and education timeline. |
+| **Process + Contact** | How engagements run, and a contact form via the Nodemailer API route. |
+
+All copy lives in [`src/data/portfolio.ts`](src/data/portfolio.ts) — edit that file to add a project or role.
 
 ---
 
 ## 🗂️ Project Structure
 
 ```
-portfolio-v2/
 ├── public/
-│   └── resume.pdf              # Your CV (downloadable)
-│
+│   ├── resume.pdf              # CV (downloadable)
+│   └── work/                   # Real project screenshots
 ├── src/
 │   ├── app/
-│   │   ├── api/
-│   │   │   └── send-email/     # Contact form API route (Nodemailer)
-│   │   ├── globals.css         # Global styles + Tailwind
-│   │   ├── layout.tsx          # Root layout (metadata, fonts)
+│   │   ├── api/send-email/     # Contact form API route (Nodemailer)
+│   │   ├── globals.css         # Theme tokens, .liquid-glass, fade-rise animations
+│   │   ├── layout.tsx          # Metadata + Instrument Serif / Inter fonts
 │   │   └── page.tsx            # Entry point → renders <App />
-│   │
+│   ├── data/portfolio.ts       # 🔑 All portfolio content
 │   └── components/
-│       ├── App.tsx             # 🔑 Main wrapper: terminal state → portfolio
-│       ├── TerminalIntro.tsx   # Terminal boot screen with typewriter effect
-│       ├── Hero.tsx            # Hero section (3D scene + scroll overlay)
-│       ├── ArrowField3D.tsx    # Three.js 3D arrow field (mouse + scroll reactive)
-│       ├── Overlay.tsx         # Scroll-animated text over 3D hero
-│       ├── Projects.tsx        # GitHub projects grid
-│       ├── Blog.tsx            # Research papers / insights
-│       ├── Skills.tsx          # Technical skills categorized
-│       ├── Timeline.tsx        # Work & education timeline
-│       ├── Dock.tsx            # macOS-style floating navigation dock
-│       └── Contact.tsx         # Contact form with email API
-│
-├── next.config.ts              # Next.js config
-├── tsconfig.json               # TypeScript config
-├── package.json                # Dependencies
-└── README.md                   # This file
+│       ├── App.tsx             # Page composition
+│       ├── Nav.tsx             # Fixed glass nav + mobile menu
+│       ├── Hero.tsx            # Video hero
+│       ├── CaseStudies.tsx     # Featured case studies
+│       ├── MoreWork.tsx        # Secondary projects grid
+│       ├── Capabilities.tsx    # Service pillars
+│       ├── Research.tsx        # Published papers
+│       ├── Experience.tsx      # Roles + education
+│       ├── Process.tsx         # How I work
+│       ├── Contact.tsx         # Contact form + footer
+│       └── ui.tsx              # Reveal, SectionHeading, Tag, TextLink
+└── hero/                       # Standalone Vite + shadcn/ui prototype of the hero
 ```
 
 ---
@@ -69,11 +61,8 @@ portfolio-v2/
 | **TypeScript** | Type safety |
 | **Tailwind CSS v4** | Utility-first styling |
 | **Framer Motion** | Scroll animations, spring physics |
-| **Three.js** | 3D arrow field rendering |
-| **@react-three/fiber** | React bindings for Three.js |
-| **@react-three/drei** | Three.js helpers |
 | **Nodemailer** | Contact form email sending |
-| **Google Fonts (Inter)** | Typography |
+| **next/font (Instrument Serif + Inter)** | Self-hosted typography |
 
 ---
 
@@ -141,21 +130,15 @@ Vercel auto-deploys on every `git push` to `main`.
 ### Update Personal Info
 | What to change | File |
 |---|---|
-| Name, title, bio | `src/components/Overlay.tsx` |
-| Projects | `src/components/Projects.tsx` |
-| Skills | `src/components/Skills.tsx` |
-| Work history | `src/components/Timeline.tsx` |
-| Research papers | `src/components/Blog.tsx` |
-| Contact / socials | `src/components/Contact.tsx` |
+| Headline, intro, proof numbers | `src/components/Hero.tsx`, `PROOF` in `src/data/portfolio.ts` |
+| Case studies / more work | `CASE_STUDIES`, `MORE_WORK` in `src/data/portfolio.ts` |
+| Capabilities | `CAPABILITIES` in `src/data/portfolio.ts` |
+| Work history | `EXPERIENCE` in `src/data/portfolio.ts` |
+| Research papers | `RESEARCH` in `src/data/portfolio.ts` |
+| Email, socials, hero video | `PROFILE` in `src/data/portfolio.ts` |
 | Resume PDF | Replace `public/resume.pdf` |
 | SEO metadata | `src/app/layout.tsx` |
-| Terminal boot text | `src/components/TerminalIntro.tsx` → `BOOT_LINES` array |
-
-### Change 3D Arrow Colors
-In `src/components/ArrowField3D.tsx`, find the `meshStandardMaterial` tags and change:
-- `color` — base color of shaft/tip
-- `emissive` — glow color
-- `emissiveIntensity` — glow strength
+| Colours, glass effect, animations | `src/app/globals.css` |
 
 ---
 

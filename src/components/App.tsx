@@ -1,40 +1,25 @@
-"use client";
-
-import { useState } from "react";
-import dynamic from "next/dynamic";
+import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
-import Projects from "@/components/Projects";
-import Skills from "@/components/Skills";
-import Timeline from "@/components/Timeline";
-import Dock from "@/components/Dock";
+import Capabilities from "@/components/Capabilities";
+import CaseStudies from "@/components/CaseStudies";
+import MoreWork from "@/components/MoreWork";
+import Research from "@/components/Research";
+import Experience from "@/components/Experience";
+import Process from "@/components/Process";
 import Contact from "@/components/Contact";
-import Blog from "@/components/Blog";
-
-const TerminalIntro = dynamic(() => import("@/components/TerminalIntro"), { ssr: false });
 
 export default function App() {
-  const [launched, setLaunched] = useState(false);
-
   return (
     <>
-      {/* Terminal intro — stays until user presses Enter/taps */}
-      {!launched && <TerminalIntro onLaunch={() => setLaunched(true)} />}
-
-      {/* Main portfolio — fades in after launch */}
-      <main
-        className="bg-[#080b14] min-h-screen text-white"
-        style={{
-          transition: "opacity 0.8s ease 0.1s",
-          opacity: launched ? 1 : 0,
-          pointerEvents: launched ? "auto" : "none",
-        }}
-      >
+      <Nav />
+      <main className="min-h-screen bg-background text-foreground">
         <Hero />
-        <Projects />
-        <Blog />
-        <Skills />
-        <Timeline />
-        <Dock />
+        <CaseStudies />
+        <MoreWork />
+        <Capabilities />
+        <Research />
+        <Experience />
+        <Process />
         <Contact />
       </main>
     </>
