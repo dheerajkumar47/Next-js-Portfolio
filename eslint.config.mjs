@@ -12,8 +12,6 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
-    // Standalone Vite prototype of the hero with its own toolchain.
-    "hero/**",
   ]),
 ]);
 

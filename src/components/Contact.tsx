@@ -76,6 +76,7 @@ export default function Contact() {
                 className={fieldClass}
                 placeholder="Your name"
                 autoComplete="name"
+                maxLength={200}
                 required
               />
             </label>
@@ -88,6 +89,7 @@ export default function Contact() {
                 className={fieldClass}
                 placeholder="you@company.com"
                 autoComplete="email"
+                maxLength={320}
                 required
               />
             </label>
@@ -97,6 +99,7 @@ export default function Contact() {
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 rows={6}
+                maxLength={5000}
                 className={`${fieldClass} resize-none`}
                 placeholder="What should the AI do, and where does your data live?"
                 required

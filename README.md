@@ -29,7 +29,7 @@ All copy lives in [`src/data/portfolio.ts`](src/data/portfolio.ts) — edit that
 ├── public/
 │   ├── resume.pdf              # CV (downloadable)
 │   └── work/                   # Real project screenshots
-├── src/
+└── src/
 │   ├── app/
 │   │   ├── api/send-email/     # Contact form API route (Nodemailer)
 │   │   ├── globals.css         # Theme tokens, .liquid-glass, fade-rise animations
@@ -48,7 +48,6 @@ All copy lives in [`src/data/portfolio.ts`](src/data/portfolio.ts) — edit that
 │       ├── Process.tsx         # How I work
 │       ├── Contact.tsx         # Contact form + footer
 │       └── ui.tsx              # Reveal, SectionHeading, Tag, TextLink
-└── hero/                       # Standalone Vite + shadcn/ui prototype of the hero
 ```
 
 ---

@@ -145,9 +145,9 @@ export const CASE_STUDIES: CaseStudy[] = [
     problem:
       "A factory wanted to know where each employee is and how people move across the floor — using the CCTV cameras it already had.",
     outcome:
-      "A real-time vision pipeline that identifies employees on live RTSP feeds, records their movement trails and surfaces it all on a live dashboard.",
+      "A real-time vision pipeline running on 50+ CCTV cameras that identifies employees, records their movement trails and surfaces it all on a live dashboard.",
     features: [
-      "Threaded multi-camera RTSP capture",
+      "Threaded RTSP capture across 50+ cameras",
       "Batched YOLO person detection on CUDA",
       "ArUco marker matched to each detected person for employee identity",
       "Movement trails and one MP4 recording per employee",
@@ -168,7 +168,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     problem:
       "Investors in Pakistan have no single place that combines live PSX market data with clear, readable analysis of each company.",
     outcome:
-      "A live investor dashboard that pairs real-time market data with AI-written daily summaries and per-company SWOT reports.",
+      "A live investor dashboard covering 100+ PSX-listed companies, pairing real-time market data with AI-written daily summaries and per-company SWOT reports.",
     features: [
       "Live price and volume tracking with USD/PKR monitoring",
       "Sector heatmaps across Cement, Textiles, Banks and more",
@@ -367,7 +367,7 @@ export const EXPERIENCE = [
     title: "Independent AI Engineer",
     org: "Freelance · Karachi",
     description:
-      "Designing and shipping AI and backend systems end to end for business clients: a multi-channel AI receptionist, real-time CCTV employee tracking and AI workflow automation.",
+      "Designing and shipping AI and backend systems end to end for business clients: a multi-channel AI receptionist, real-time CCTV employee tracking across 50+ cameras and AI workflow automation.",
   },
   {
     period: "Oct 2025 — Nov 2025",
@@ -377,11 +377,11 @@ export const EXPERIENCE = [
       "Tested enterprise applications with manual and automated methods, building the habits that now go into every AI system's test suite.",
   },
   {
-    period: "Aug 2025 — Oct 2025",
-    title: "AI Intern",
+    period: "Jan 2025 — Dec 2025",
+    title: "AI Engineer",
     org: "Bits Collision",
     description:
-      "Built LLM features with multi-agent, tool-using workflows (LangGraph, CrewAI) for message classification and routing, RAG conversational pipelines and FastAPI microservices on Docker.",
+      "Built production LLM systems: multi-agent, tool-using workflows (LangGraph, CrewAI) for message classification and routing, RAG conversational pipelines, LLM evaluation and guardrails, and FastAPI microservices on Docker. Trained ML models reaching 90%+ accuracy with transfer learning.",
   },
   {
     period: "Jan 2024 — Jan 2025",
